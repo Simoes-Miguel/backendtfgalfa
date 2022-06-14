@@ -30,7 +30,7 @@ const run = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  await app.listen(process.env.PUERTO_SERVIDOR);
+  await app.listen(process.env.PORT || 5000);
   console.log("Servidor y base de datos arrancados");
 };
 

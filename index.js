@@ -16,7 +16,10 @@ app.use(cors());
 
 app.use(morgan("dev"));
 app.listen(8080);
-
+app.get("/", function (req, res) {
+  console.log("base!");
+  res.send("base!");
+});
 app.get("/posts", function (req, res) {
   console.log("posts!");
   res.send("posts!");

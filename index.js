@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(morgan("dev"));
-app.listen(3000);
+
 app.get("/", function (req, res) {
   console.log("base!");
   res.send("base!");

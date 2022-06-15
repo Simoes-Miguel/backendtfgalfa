@@ -59,11 +59,16 @@ app.get("/insertar/:dato", async (req, res) => {
     console.log(datoRecibido);
 
     let datoEnvio = new Dato();
-
-    datoEnvio.nombre = datoRecibido[0]?.split("=")[1] || "";
-    datoEnvio.total = datoRecibido[1]?.split("=")[1] || 0;
-    datoEnvio.fecha = datoRecibido[2]?.split("=")[1] || "";
-
+    
+    datoEnvio.nombre = datoRecibido[0]?.split("=")[0] == "nombre" ? datoRecibido[0]?.split("=")[1] || null : null;
+    console.log(datoEnvio.nombre)
+    datoEnvio.total = datoRecibido[1]?.split("=")[0] == "total" ? datoRecibido[1]?.split("=")[1] || null : null;
+    console.log(datoEnvio.total)
+    datoEnvio.fecha = datoRecibido[2]?.split("=")[0] == "fecha" ? datoRecibido[2]?.split("=")[1] || null : null;
+    console.log(datoEnvio.fecha)
+    if(datoEnvio.nombre == null || datoEnvio.total == null || datoEnvio.fecha == null){
+      res.statusCode(666).send("a tomar por culo")
+    }
     datoEnvio.save((err, data) => {
       if (err) {
         console.log(err);
